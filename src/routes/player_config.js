@@ -302,21 +302,26 @@ player_config.get('/player/:name/:pass', (req,res) =>{
  *         description: Error de conexión a la base de datos
  */
 player_config.post('/player',(req,res)=>{
-    let {name,email,password,external_type,external_id} = req.body;
+    let {name,email,password,age,external_type,external_id} = req.body;
     console.log(req.body);
     var insertInto = 'INSERT INTO `playerss` '
-    var columnValues = '(`name`,`email`,`password`, `external_type`, `external_id`) '
+    var columnValues = '(`name`,`email`,`password`,`age`,`external_type`,`external_id`) '
+    console.log(age)
     if(password === undefined){
         password = ''
     }
-    var newValues = 'VALUES (?,?,?,?,?)'
+    if(age === undefined){
+        age = 1
+    }
+    console.log(age)
+    var newValues = 'VALUES (?,?,?,?,?,?)'
     var query = insertInto+columnValues+newValues
     mysqlConnection.getConnection(function(err, connection) {
         if (err){
             res.status(400).json({message:'No se pudo obtener una conexion para realizar la consulta en la base de datos, consulte nuevamente', error: err})
             throw err
         } 
-        connection.query(query,[name,email,password,external_type,external_id], function(err,rows,fields){
+        connection.query(query,[name,email,password,age,external_type,external_id], function(err,rows,fields){
             if (!err){
                 console.log(rows);
                 res.status(200).json(rows)
