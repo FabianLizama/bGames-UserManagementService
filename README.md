@@ -12,7 +12,7 @@ Esta API utiliza [Swagger UI](https://swagger.io/tools/swagger-ui/) para documen
    npm run dev
    ```
 2. **Abre tu navegador en:**  
-   [http://localhost:3001/api-docs](http://localhost:3001/api-docs)
+   [http://localhost:3001/api-docs](http://localhost:3010/api-docs)
 
 Ahí podrás visualizar y probar los endpoints con Swagger UI.
 
